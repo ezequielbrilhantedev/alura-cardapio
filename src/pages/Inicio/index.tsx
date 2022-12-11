@@ -3,6 +3,7 @@ import styles from './Inicio.module.scss';
 import stylesTema from 'styles/Tema.module.scss';
 import nossaCasa from 'assets/nossa_casa.png';
 import { useNavigate } from 'react-router-dom';
+import { Prato } from 'types/Prato';
 
 export default function Inicio() {
   let pratosRecomendados = [...cardapio];
@@ -12,13 +13,17 @@ export default function Inicio() {
 
   const navigate = useNavigate();
 
-  function redirecionarParaDetalhes(prato: typeof cardapio[0]) {
-    navigate(`/prato/${prato.id}`, { state: { prato } });
+  function redirecionarParaDetalhes(prato: Prato) {
+    navigate(`/prato/${prato.id}`, {
+      state: { prato },
+    });
   }
 
   return (
     <section>
-      <h3 className={stylesTema.titulo}>Recomendações da cozinha</h3>
+      <h3 className={stylesTema.titulo}>
+        Recomendações da cozinha
+      </h3>
       <div className={styles.recomendados}>
         {pratosRecomendados.map((item) => (
           <div key={item.id} className={styles.recomendado}>
@@ -38,7 +43,8 @@ export default function Inicio() {
       <div className={styles.nossaCasa}>
         <img src={nossaCasa} alt="Casa do alunori" />
         <div className={styles.nossaCasa__endereco}>
-          Rua Vergueiro, 3185 <br /> <br /> Vila Mariana - SP
+          Rua Vergueiro, 3185 <br /> <br /> Vila Mariana -
+          SP
         </div>
       </div>
     </section>
